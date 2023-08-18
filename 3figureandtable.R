@@ -105,7 +105,7 @@ A = ggplot(data = sf, aes(x = SUM)) +
     panel.grid.minor = element_blank()
   ) + theme(text = element_text(size = 15)) + 
   theme(axis.title.y = element_text(margin = margin()))+
-  geom_histogram(aes(y = ..count..), colour = 1, fill = "white", bins = 30) + 
+  geom_histogram(aes(y = ..count..), colour = 1, fill = "white", bins = 30) + #..count..패키지 업데이트 후 확인!!
   stat_function(fun = function(x) dnorm(x, mean = mean(sf$SUM), sd = sd(sf$SUM)) * nrow(sf) * 1.7) +
   scale_x_continuous("총점") + #n 뒤에 ,color = "black", size =  //  걍 이거 해 ,limits = c(-8.5,4)
   scale_y_continuous("빈도",sec.axis=sec_axis(
