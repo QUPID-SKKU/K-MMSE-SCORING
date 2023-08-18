@@ -1,18 +1,18 @@
 #(그림 1) 특질 수준과 원점수 간 선형 함수 및 로지스틱 함수
-p <- ggplot(data = data.frame(x = c(-3, 3)), aes(x))
+p = ggplot(data = data.frame(x = c(-3, 3)), aes(x))
 p + stat_function(fun = function(x) 30/(1+exp(-x)), n = 100)  + geom_hline(yintercept = c(0,30), linetype = 'solid') + 
   stat_function(fun = function(x) 15+(7.5*x), n = 100) + 
   scale_x_continuous(name = "특질 수준",breaks = seq(-3,3,by = 1)) + 
   scale_y_continuous(name = "원점수",breaks = seq(0,30,by = 5),limits = c(0,30)) + theme_bw()+
   theme(plot.background = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank()) +
-  geom_segment(aes(x = -2,y = 0,xend = -1,yend = 0),arrow = arrow(end = "both",type = "closed",length = unit(0.25, "cm")),size = 0.5) + 
-  geom_segment(aes(x = -3.3,y = 30/(1+exp(-(-2))),xend = -3.3,yend = 30/(1+exp(-(-1)))),arrow = arrow(end = "both",type = "closed",length = unit(0.25, "cm")),size = 0.5) +
-  geom_segment(aes(x = 0,y = 0,xend = 1,yend = 0),arrow = arrow(end = "both",type = "open",length = unit(0.25, "cm")),size = 0.5) + 
-  geom_segment(aes(x = -3.3,y = 15+(7.5*(-0))),xend = -3.3,yend = 15+(7.5*(1)),arrow = arrow(end = "both",type = "open",length = unit(0.25, "cm")),size = 0.5) +
-  geom_segment(aes(x = -1,y = 0,xend = -0,yend = 0),arrow = arrow(end = "both",type = "closed",length = unit(0.25, "cm")),size = 0.5) + 
-  geom_segment(aes(x = -3.1,y = 30/(1+exp(-(-1))),xend = -3.1,yend = 15+(7.5*(-0))),arrow = arrow(end = "both",type = "closed",length = unit(0.25, "cm")),size = 0.5) + 
-  geom_segment(aes(x = 1,y = 0,xend = 2,yend = 0),arrow = arrow(end = "both",type = "open",length = unit(0.25, "cm")),size = 0.5) + 
-  geom_segment(aes(x = -3.1,y = 15+(7.5*(1)),xend = -3.1,yend = 15+(7.5*(2))),arrow = arrow(end = "both",type = "open",length = unit(0.25, "cm")),size = 0.5) +
+  geom_segment(aes(x = -2,y = 0,xend = -1,yend = 0),arrow = arrow(end = "both",type = "closed",length = unit(0.25, "cm")),linewidth = 0.5) + 
+  geom_segment(aes(x = -3.3,y = 30/(1+exp(-(-2))),xend = -3.3,yend = 30/(1+exp(-(-1)))),arrow = arrow(end = "both",type = "closed",length = unit(0.25, "cm")),linewidth = 0.5) +
+  geom_segment(aes(x = 0,y = 0,xend = 1,yend = 0),arrow = arrow(end = "both",type = "open",length = unit(0.25, "cm")),linewidth = 0.5) + 
+  geom_segment(aes(x = -3.3,y = 15+(7.5*(-0))),xend = -3.3,yend = 15+(7.5*(1)),arrow = arrow(end = "both",type = "open",length = unit(0.25, "cm")),linewidth = 0.5) +
+  geom_segment(aes(x = -1,y = 0,xend = -0,yend = 0),arrow = arrow(end = "both",type = "closed",length = unit(0.25, "cm")),linewidth = 0.5) + 
+  geom_segment(aes(x = -3.1,y = 30/(1+exp(-(-1))),xend = -3.1,yend = 15+(7.5*(-0))),arrow = arrow(end = "both",type = "closed",length = unit(0.25, "cm")),linewidth = 0.5) + 
+  geom_segment(aes(x = 1,y = 0,xend = 2,yend = 0),arrow = arrow(end = "both",type = "open",length = unit(0.25, "cm")),linewidth = 0.5) + 
+  geom_segment(aes(x = -3.1,y = 15+(7.5*(1)),xend = -3.1,yend = 15+(7.5*(2))),arrow = arrow(end = "both",type = "open",length = unit(0.25, "cm")),linewidth = 0.5) +
   geom_segment(aes(x = -2,y = 30/(1+exp(-(-2))),xend = -3.3,yend = 30/(1+exp(-(-2)))),linetype=2) +
   geom_segment(aes(x = -2,y = 0,xend = -2,yend = 30/(1+exp(-(-2)))),linetype=2) + 
   geom_segment(aes(x = -1,y = 30/(1+exp(-(-1))),xend = -3.3,yend = 30/(1+exp(-(-1)))),linetype=2) +
@@ -36,53 +36,8 @@ p + stat_function(fun = function(x) 30/(1+exp(-x)), n = 100)  + geom_hline(yinte
   annotate("text", x = -3.5, y = 15+(7.5*(1)) + ((15+(7.5*(2))) - (15+(7.5*(1))))/2, label = "D'", fontface=2, size = 4) +
   theme(text = element_text(size = 15))
 
-#(그림 1) 대안
-p <- ggplot(data = data.frame(x = c(-3, 3)), aes(x))
-p + stat_function(fun = function(x) 30/(1+exp(-x)), n = 100)  + geom_hline(yintercept = c(0,30), linetype = 'solid') + 
-  stat_function(fun = function(x) 15+(7.5*x), n = 100) + 
-  #테마 시작
-  scale_x_continuous(name = "특질 수준",breaks = seq(-3,3,by = 1)) + 
-  scale_y_continuous(name = "원점수",breaks = seq(0,30,by = 5),limits = c(0,30)) + theme_bw() +
-  theme(plot.background = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank()) +
-  theme(text = element_text(size = 15)) +
-  #테마 끝
-  #X축 ABCD 시작
-  geom_segment(aes(x = -2,y = 0,xend = -1,yend = 0),arrow = arrow(end = "both",type = "open",length = unit(0.25, "cm")),size = 0.5) +
-  geom_segment(aes(x = -2,y = 0,xend = -1,yend = 0),arrow = arrow(end = "both",type = "open",length = unit(0.25, "cm")),size = 0.5) + 
-  geom_segment(aes(x = 0,y = 0,xend = 1,yend = 0),arrow = arrow(end = "both",type = "closed",length = unit(0.25, "cm")),size = 0.5) + 
-  geom_segment(aes(x = -1,y = 0,xend = -0,yend = 0),arrow = arrow(end = "both",type = "open",length = unit(0.25, "cm")),size = 0.5) + 
-  geom_segment(aes(x = 1,y = 0,xend = 2,yend = 0),arrow = arrow(end = "both",type = "closed",length = unit(0.25, "cm")),size = 0.5) + 
-  annotate("text", x = -1.5, y = 0.75, label = "A", fontface=2, size = 4) + 
-  annotate("text", x = -0.5, y = 0.75, label = "B", fontface=2, size = 4) + 
-  annotate("text", x = 0.5, y = 0.75, label = "C", fontface=2, size = 4) + 
-  annotate("text", x = 1.5, y = 0.75, label = "D", fontface=2, size = 4) + 
-  #X축 ABCD 끝
-  #세로선 시작
-  geom_segment(aes(x = -1,y = 0,xend = -1,yend = 15+(7.5*(-1))),linetype=2) + 
-  geom_segment(aes(x = 0,y = 0,xend = 0,yend = 15+(7.5*(0))),linetype=2) +
-  geom_segment(aes(x = 1,y = 0,xend = 1,yend = 30/(1+exp(-(1)))),linetype=2) + 
-  geom_segment(aes(x = 2,y = 0,xend = 2,yend = 30/(1+exp(-(2)))),linetype=2) + 
-  #세로선 끝
-  #가로선 시작
-  geom_segment(aes(x = -1,y = 15+(7.5*(-1)),xend = -3.3,yend = 15+(7.5*(-1))),linetype=2) +
-  geom_segment(aes(x = 0,y = 15+(7.5*(0)),xend = -3.3,yend = 15+(7.5*(0))),linetype=2) + 
-  geom_segment(aes(x = 1,y = 30/(1+exp(-(1))),xend = -3.3,yend = 30/(1+exp(-(1)))),linetype=2) + 
-  geom_segment(aes(x = 2,y = 30/(1+exp(-(2))),xend = -3.3,yend = 30/(1+exp(-(2)))),linetype=2) +
-  #가로선 끝
-  #Y축 A'B'C'D 시작
-  geom_segment(aes(x = -3.1,y = 0,xend = -3.1,yend = 15+(7.5*(-1))),arrow = arrow(end = "both",type = "open",length = unit(0.25, "cm")),size = 0.5) +
-  geom_segment(aes(x = -3.3,y = 15+(7.5*(-1))),xend = -3.3,yend = 15+(7.5*(0)),arrow = arrow(end = "both",type = "open",length = unit(0.25, "cm")),size = 0.5) +
-  geom_segment(aes(x = -3.1,y = 30/(1+exp(-(0))),xend = -3.1,yend = 30/(1+exp(-(1)))),arrow = arrow(end = "both",type = "closed",length = unit(0.25, "cm")),size = 0.5) +
-  geom_segment(aes(x = -3.3,y = 30/(1+exp(-(1))),xend = -3.3,yend = 30/(1+exp(-(2)))),arrow = arrow(end = "both",type = "closed",length = unit(0.25, "cm")),size = 0.5) +
-  annotate("text", x = -3.5, y = 15+(7.5*(-2)) + ((15+(7.5*(-1))) - (15+(7.5*(-2))))/2, label = "A'", fontface=2, size = 4) + 
-  annotate("text", x = -3.5, y = 15+(7.5*(-1)) + ((15+(7.5*(0))) - (15+(7.5*(-1))))/2, label = "B'", fontface=2, size = 4) + 
-  annotate("text", x = -3.5, y = 30/(1+exp(-(0))) + (30/(1+exp(-(1))) - 30/(1+exp(-(0))))/2, label = "C'", fontface=2, size = 4) + 
-  annotate("text", x = -3.5, y = 30/(1+exp(-(1))) + (30/(1+exp(-(2))) - 30/(1+exp(-(1))))/2, label = "D'", fontface=2, size = 4)
-#Y축 A'B'C'D 끝
-
-
 #(그림 2) 세 범주를 갖는 문항의 범주반응함수 
-p <- ggplot(data = data.frame(x = c(-3, 3)), aes(x)) 
+p = ggplot(data = data.frame(x = c(-3, 3)), aes(x)) 
 p +
   stat_function(fun = function(x) 1/(1+8*exp(-2*x)), n = 100) + stat_function(fun = function(x) 1/(1+8*exp(2*x)), n = 100) + stat_function(fun = dnorm, args=list(mean=0, sd=1),n = 100) + 
   scale_x_continuous(name = "특질 수준",breaks = seq(-3,3,by = 1)) + scale_y_continuous(name = "반응확률",breaks = seq(0,1,by = 0.5),limits = c(0,1)) + theme_bw() + 
@@ -105,7 +60,7 @@ A = ggplot(data = sf, aes(x = SUM)) +
     panel.grid.minor = element_blank()
   ) + theme(text = element_text(size = 15)) + 
   theme(axis.title.y = element_text(margin = margin()))+
-  geom_histogram(aes(y = ..count..), colour = 1, fill = "white", bins = 30) + #..count..패키지 업데이트 후 확인!!
+  geom_histogram(aes(y = after_stat(count)), colour = 1, fill = "white", bins = 30) + #after_stat(count)패키지 업데이트 후 확인!!
   stat_function(fun = function(x) dnorm(x, mean = mean(sf$SUM), sd = sd(sf$SUM)) * nrow(sf) * 1.7) +
   scale_x_continuous("총점") + #n 뒤에 ,color = "black", size =  //  걍 이거 해 ,limits = c(-8.5,4)
   scale_y_continuous("빈도",sec.axis=sec_axis(
@@ -208,7 +163,7 @@ A = ggplot(data = sf, aes(x = CFA)) +
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank()
   ) + theme(text = element_text(size = 15)) +
-  geom_histogram(aes(y = ..count..), colour = 1, fill = "white", bins = 30) + 
+  geom_histogram(aes(y = after_stat(count)), colour = 1, fill = "white", bins = 30) + 
   stat_function(fun = function(x) dnorm(x, mean = mean(sf$CFA), sd = sd(sf$CFA)) * nrow(sf) * 0.3) +
   scale_x_continuous("요인점수") + #n 뒤에 ,color = "black", size =  //  걍 이거 해 ,limits = c(-8.5,4)
   scale_y_continuous("빈도",
@@ -312,8 +267,8 @@ grid.arrange(TOPA,posterA, ncol = 1, heights = c(0.25,0.5))
 
 
 #(그림 5) K-MMSE 부분점수모형 및 일반화부분점수모형의 검사정보함수
-Theta <- matrix(seq(-4,1,.01))
-pcm.info <- testinfo(results.pcm, Theta)
+Theta = matrix(seq(-4,1,.01))
+pcm.info = testinfo(results.pcm, Theta)
 gpcm.info = testinfo(results.gpcm,Theta)
 plot(Theta, pcm.info,ylim = c(0,30),cex.axis=1.2,
      type = 'l',ylab = "", xlab="")
@@ -331,7 +286,7 @@ A = ggplot(data = sf, aes(x = PCM)) +
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank()
   ) + theme(text = element_text(size = 15)) +
-  geom_histogram(aes(y = ..count..), colour = 1, fill = "white", binwidth = 0.37) + #bins = 30, binwidth = 0.33
+  geom_histogram(aes(y = after_stat(count)), colour = 1, fill = "white", binwidth = 0.37) + #bins = 30, binwidth = 0.33
   stat_function(fun = function(x) dnorm(x, mean = mean(sf$PCM), sd = sd(sf$PCM)) * nrow(sf) * 0.38) +
   scale_x_continuous("PCM특질점수") + #n 뒤에 ,color = "black", size =  //  걍 이거 해 ,limits = c(-8.5,4)
   scale_y_continuous("빈도",sec.axis=sec_axis(
@@ -398,7 +353,6 @@ C = ggplot(data = filter(sf, agegroup == 2), aes(sample = PCM)) + stat_qq()  + t
            y = -2.95,
            size = 5.5)
 
-#myexpr = substitute(italic(g[1])==k,list(k=format(sf%>%filter(agegroup==3)%>%select(PCM)%>%skew(),digits = 1)))
 myexpr = substitute(italic(g[1])==k,list(k=-0.1))
 D = ggplot(data = filter(sf, agegroup == 3), aes(sample = PCM)) + stat_qq()  + theme_bw() + stat_qq_line() +
   theme(plot.background = element_blank(),
@@ -414,7 +368,6 @@ D = ggplot(data = filter(sf, agegroup == 3), aes(sample = PCM)) + stat_qq()  + t
            y = -3,
            size = 5.5)
 
-#myexpr = substitute(italic(g[1])==k,list(k=format(sf%>%filter(agegroup==4)%>%select(PCM)%>%skew(),digits = 1)))
 myexpr = substitute(italic(g[1])==k,list(k=0.1))
 E = ggplot(data = filter(sf, agegroup == 4), aes(sample = PCM)) + stat_qq()  + theme_bw() + stat_qq_line() +
   theme(plot.background = element_blank(),
@@ -442,7 +395,7 @@ A = ggplot(data = sf, aes(x = GPCM)) +
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank()
   ) + theme(text = element_text(size = 15)) +
-  geom_histogram(aes(y = ..count..), colour = 1, fill = "white", binwidth = 0.38)+ #bins = 30
+  geom_histogram(aes(y = after_stat(count)), colour = 1, fill = "white", binwidth = 0.38)+ #bins = 30
   stat_function(fun = function(x) dnorm(x, mean = mean(sf$GPCM), sd = sd(sf$GPCM)) * nrow(sf) * 0.38) +
   scale_x_continuous("GPCM특질점수") + #n 뒤에 ,color = "black", size =  //  걍 이거 해 ,limits = c(-8.5,4)
   scale_y_continuous("빈도",sec.axis=sec_axis(
@@ -508,8 +461,6 @@ C = ggplot(data = filter(sf, agegroup == 2), aes(sample = GPCM)) + stat_qq()  + 
            x = 1.35,
            y = -2.9,
            size = 5.5)
-
-#myexpr = substitute(italic(g[1])==k,list(k=format(sf%>%filter(agegroup==3)%>%select(GPCM)%>%skew(),digits = 1)))
 myexpr = substitute(italic(g[1])==k,list(k=0))
 D = ggplot(data = filter(sf, agegroup == 3), aes(sample = GPCM)) + stat_qq()  + theme_bw() + stat_qq_line() +
   theme(plot.background = element_blank(),
